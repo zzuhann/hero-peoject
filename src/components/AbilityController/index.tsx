@@ -1,7 +1,8 @@
 import { Profile } from '@/apis/type';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { ControllerContainerStyles, ControllerStyles, ListContainerStyles } from './style';
 
-type Props = {
+type AbilityControllerProps = {
 	abilityName: keyof Profile;
 	abilityValue: number;
 	handleChangeProfile: (key: keyof Profile, action: 'increase' | 'decrease') => void;
@@ -13,30 +14,28 @@ const AbilityController = ({
 	abilityValue,
 	handleChangeProfile,
 	remaining,
-}: Props) => {
+}: AbilityControllerProps) => {
 	return (
-		<Box sx={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+		<ControllerContainerStyles>
 			<Box sx={{ width: '20px' }}>
 				<Typography>{abilityName}</Typography>
 			</Box>
-			<Button
+			<ControllerStyles
 				variant='contained'
 				disabled={remaining === 0}
 				onClick={() => handleChangeProfile(abilityName, 'increase')}
-				sx={{ minWidth: 'auto', width: '30px', height: '30px', padding: '10px' }}
 			>
 				+
-			</Button>
+			</ControllerStyles>
 			<Typography>{abilityValue}</Typography>
-			<Button
+			<ControllerStyles
 				variant='contained'
 				disabled={abilityValue === 0}
 				onClick={() => handleChangeProfile(abilityName, 'decrease')}
-				sx={{ minWidth: 'auto', width: '30px', height: '30px', padding: '10px' }}
 			>
 				-
-			</Button>
-		</Box>
+			</ControllerStyles>
+		</ControllerContainerStyles>
 	);
 };
 
@@ -52,7 +51,7 @@ const AbilityControllerList = ({
 	remaining,
 }: AbilityControllerListProps) => {
 	return (
-		<Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+		<ListContainerStyles>
 			{abilities.map((ability) => (
 				<AbilityController
 					key={ability.name}
@@ -62,7 +61,7 @@ const AbilityControllerList = ({
 					handleChangeProfile={handleChangeProfile}
 				/>
 			))}
-		</Box>
+		</ListContainerStyles>
 	);
 };
 

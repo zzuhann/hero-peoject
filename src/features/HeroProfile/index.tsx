@@ -5,6 +5,7 @@ import { LoadingButton } from '@mui/lab';
 import AbilityControllerList from '@/components/AbilityController';
 import { useUpdateHeroProfile } from '@/hooks';
 import { Profile } from '@/apis/type';
+import { ContainerStyles } from './style';
 
 const HeroProfile = () => {
 	const { id } = useParams();
@@ -25,26 +26,24 @@ const HeroProfile = () => {
 		});
 	};
 	return (
-		<Box sx={{ border: 'solid 1px black', width: '100%', marginTop: '20px' }}>
-			<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-				<AbilityControllerList
-					abilities={heroProfile}
-					handleChangeProfile={handleChangeProfile}
-					remaining={remaining}
-				/>
-				<Box sx={{ alignSelf: 'flex-end' }}>
-					<Typography>剩餘點數 {remaining}</Typography>
-					<LoadingButton
-						variant='contained'
-						disabled={remaining > 0}
-						onClick={saveProfile}
-						loading={updateHeroProfile.isPending}
-					>
-						儲存
-					</LoadingButton>
-				</Box>
+		<ContainerStyles>
+			<AbilityControllerList
+				abilities={heroProfile}
+				handleChangeProfile={handleChangeProfile}
+				remaining={remaining}
+			/>
+			<Box sx={{ alignSelf: 'flex-end' }}>
+				<Typography>剩餘點數 {remaining}</Typography>
+				<LoadingButton
+					variant='contained'
+					disabled={remaining > 0}
+					onClick={saveProfile}
+					loading={updateHeroProfile.isPending}
+				>
+					儲存
+				</LoadingButton>
 			</Box>
-		</Box>
+		</ContainerStyles>
 	);
 };
 

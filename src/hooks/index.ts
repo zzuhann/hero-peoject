@@ -15,6 +15,7 @@ export const useGetHeroes = () => {
 export const useGetHeroById = (id: string) => {
 	return useQuery({
 		queryKey: ['hero', id],
+		staleTime: 1000 * 60 * 5,
 		enabled: !!id,
 		queryFn: async () => {
 			const data = await apis.getHeroById(id);

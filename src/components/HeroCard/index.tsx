@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { ContainerStyles, ImageStyles } from './style';
 import { memo } from 'react';
 import { useStableNavigate } from '@/context';
@@ -19,9 +19,7 @@ const HeroCard = memo(({ id, name, imageUrl, isActive }: Props) => {
 
 	return (
 		<ContainerStyles onClick={handleClickCard} isActive={isActive}>
-			<Box>
-				<ImageStyles src={imageUrl} />
-			</Box>
+			<ImageStyles src={imageUrl} />
 			<Typography>{name}</Typography>
 		</ContainerStyles>
 	);

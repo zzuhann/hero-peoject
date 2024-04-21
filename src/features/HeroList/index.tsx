@@ -1,8 +1,8 @@
 import HeroCard from '@/components/HeroCard';
-import { Box } from '@mui/material';
 import { useMemo } from 'react';
 import { Hero } from '@/apis/type';
 import { useParams } from 'react-router-dom';
+import { ContainerStyles } from './style';
 
 type Props = {
 	heroes: Hero[];
@@ -15,11 +15,11 @@ const HeroList = ({ heroes }: Props) => {
 	const { id: currentId } = useParams();
 
 	return (
-		<Box sx={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+		<ContainerStyles>
 			{heroesMemo?.map(({ id, name, image }) => (
 				<HeroCard key={id} id={id} name={name} imageUrl={image} isActive={currentId === id} />
 			))}
-		</Box>
+		</ContainerStyles>
 	);
 };
 
