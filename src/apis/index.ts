@@ -8,6 +8,9 @@ const apis = {
 	getHeroById: (id: string): Promise<Profile> => {
 		return instance.get(`/heroes/${id}/profile`);
 	},
+	updateHeroProfile: (id: string, data: Profile): Promise<Profile> => {
+		return instance.patch(`/heroes/${id}/profile`, data);
+	},
 };
 
 export default apis;
