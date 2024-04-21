@@ -1,5 +1,5 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import HeroPages from '../pages/heroes';
+import HeroPages from '@/pages/heroes';
 
 const routes = [
 	{

@@ -10,4 +10,9 @@ export default defineConfig({
 		environment: 'jsdom',
 		setupFiles: path.resolve(__dirname, './src/vite.setup.ts'),
 	},
+	resolve: {
+		alias: {
+			'@': path.resolve(__dirname, './src'),
+		},
+	},
 });
