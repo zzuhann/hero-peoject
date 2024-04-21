@@ -18,3 +18,8 @@ export const ListContainerStyles = styled(Box)({
 	flexDirection: 'column',
 	gap: '20px',
 });
+
+export const AbilityValueContainerStyles = styled(Box)({
+	width: '50px',
+	textAlign: 'center',
+});

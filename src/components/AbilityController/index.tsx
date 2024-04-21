@@ -1,6 +1,11 @@
 import { Profile } from '@/apis/type';
 import { Box, Typography } from '@mui/material';
-import { ControllerContainerStyles, ControllerStyles, ListContainerStyles } from './style';
+import {
+	AbilityValueContainerStyles,
+	ControllerContainerStyles,
+	ControllerStyles,
+	ListContainerStyles,
+} from './style';
 
 type AbilityControllerProps = {
 	abilityName: keyof Profile;
@@ -29,9 +34,11 @@ const AbilityController = ({
 			>
 				<Typography variant='h6'>+</Typography>
 			</ControllerStyles>
-			<Typography variant='h6' color='#3d3d3e'>
-				{abilityValue}
-			</Typography>
+			<AbilityValueContainerStyles>
+				<Typography variant='h6' color='#3d3d3e'>
+					{abilityValue}
+				</Typography>
+			</AbilityValueContainerStyles>
 			<ControllerStyles
 				variant='outlined'
 				disabled={abilityValue === 0}
