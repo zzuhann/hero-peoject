@@ -1,13 +1,18 @@
 import { Box, Typography } from '@mui/material';
 import { ContainerStyles, ImageStyles } from './style';
 
-const HeroCard = () => {
+type Props = {
+	name: string;
+	imageUrl: string;
+};
+
+const HeroCard = ({ name, imageUrl }: Props) => {
 	return (
 		<ContainerStyles>
 			<Box>
-				<ImageStyles src='https://akm-img-a-in.tosshub.com/indiatoday/images/media_bank/202308/seventeen-s-coups-has-suffered-a-knee-injury-and-will-be-going-on-a-hiatus-174202-16x9.jpg?VersionId=.N1ZR3v4ssiSzOkqT1LcLT33St5lYki0' />
+				<ImageStyles src={imageUrl} />
 			</Box>
-			<Typography>Hero Name</Typography>
+			<Typography>{name}</Typography>
 		</ContainerStyles>
 	);
 };
