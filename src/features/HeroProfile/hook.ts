@@ -1,8 +1,8 @@
 import { Profile } from '@/apis/type';
 import { useGetHeroById } from '@/hooks';
 import { useEffect, useState } from 'react';
-
-type HeroProfile = { name: keyof Profile; value: number };
+import { HeroProfile } from './type';
+import { decreaseValue, increaseValue } from './utils';
 
 export const useHeroProfile = (heroId: string) => {
 	const { data } = useGetHeroById(heroId);
@@ -18,30 +18,14 @@ export const useHeroProfile = (heroId: string) => {
 			setHeroProfile((prev) => {
 				if (!prev) return [];
 				if (currentProfileValueSum === total) return prev;
-				return prev.map((item) => {
-					if (item.name === key) {
-						return {
-							...item,
-							value: item.value + 1,
-						};
-					}
-					return item;
-				});
+				return increaseValue(prev, key);
 			});
 		}
 		if (action === 'decrease') {
 			setHeroProfile((prev) => {
 				if (!prev) return [];
 				if (prev.find((item) => item.name === key)?.value === 0) return prev;
-				return prev.map((item) => {
-					if (item.name === key) {
-						return {
-							...item,
-							value: item.value - 1,
-						};
-					}
-					return item;
-				});
+				return decreaseValue(prev, key);
 			});
 		}
 	};
