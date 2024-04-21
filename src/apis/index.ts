@@ -1,27 +1,12 @@
-import axios, { AxiosResponse } from 'axios';
-import { Hero } from './type';
-
-const heroesInstance = axios.create({
-	baseURL: 'https://hahow-recruit.herokuapp.com',
-	headers: {
-		'Content-Type': 'application/json',
-		Accept: 'application/json',
-	},
-});
-
-const onResponse = (response: AxiosResponse) => {
-	const { status } = response;
-	if (status >= 200 && status <= 299) {
-		return response.data;
-	}
-	return response;
-};
-
-heroesInstance.interceptors.response.use(onResponse);
+import { Hero, Profile } from './type';
+import instance from './instance';
 
 const apis = {
 	getHeroes: (): Promise<Hero[]> => {
-		return heroesInstance.get('/heroes');
+		return instance.get('/heroes');
+	},
+	getHeroById: (id: string): Promise<Profile> => {
+		return instance.get(`/heroes/${id}/profile`);
 	},
 };
 
