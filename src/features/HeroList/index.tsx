@@ -15,7 +15,7 @@ const HeroList = ({ heroes }: Props) => {
 	const { id: currentId } = useParams();
 
 	return (
-		<Box sx={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}>
+		<Box sx={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'space-between' }}>
 			{heroesMemo?.map(({ id, name, image }) => (
 				<HeroCard key={id} id={id} name={name} imageUrl={image} isActive={currentId === id} />
 			))}

@@ -10,10 +10,8 @@ const HeroesLayout = () => {
 		<Box
 			sx={{
 				padding: '40px 20px',
-				width: '100%',
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
+				maxWidth: '1200px',
+				margin: '0 auto',
 			}}
 		>
 			<HeroList heroes={data || []} isLoading={isLoading} isError={isError} />
