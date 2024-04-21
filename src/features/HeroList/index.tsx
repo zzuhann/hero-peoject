@@ -2,6 +2,7 @@ import HeroCard from '@/components/HeroCard';
 import { Box } from '@mui/material';
 import { useMemo } from 'react';
 import { Hero } from '@/apis/type';
+import { useParams } from 'react-router-dom';
 
 type Props = {
 	heroes: Hero[];
@@ -11,11 +12,12 @@ type Props = {
 
 const HeroList = ({ heroes }: Props) => {
 	const heroesMemo = useMemo(() => heroes, [heroes]);
+	const { id: currentId } = useParams();
 
 	return (
-		<Box sx={{ display: 'flex', gap: '20px' }}>
-			{heroesMemo?.map((hero) => (
-				<HeroCard key={hero.id} id={hero.id} name={hero.name} imageUrl={hero.image} />
+		<Box sx={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}>
+			{heroesMemo?.map(({ id, name, image }) => (
+				<HeroCard key={id} id={id} name={name} imageUrl={image} isActive={currentId === id} />
 			))}
 		</Box>
 	);

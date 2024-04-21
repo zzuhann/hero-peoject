@@ -7,9 +7,10 @@ type Props = {
 	id: string;
 	name: string;
 	imageUrl: string;
+	isActive: boolean;
 };
 
-const HeroCard = memo(({ id, name, imageUrl }: Props) => {
+const HeroCard = memo(({ id, name, imageUrl, isActive }: Props) => {
 	const navigate = useStableNavigate();
 
 	const handleClickCard = () => {
@@ -17,7 +18,7 @@ const HeroCard = memo(({ id, name, imageUrl }: Props) => {
 	};
 
 	return (
-		<ContainerStyles onClick={handleClickCard}>
+		<ContainerStyles onClick={handleClickCard} isActive={isActive}>
 			<Box>
 				<ImageStyles src={imageUrl} />
 			</Box>
