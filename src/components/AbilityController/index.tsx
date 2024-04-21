@@ -17,23 +17,27 @@ const AbilityController = ({
 }: AbilityControllerProps) => {
 	return (
 		<ControllerContainerStyles>
-			<Box sx={{ width: '20px' }}>
-				<Typography>{abilityName}</Typography>
+			<Box sx={{ width: '80px' }}>
+				<Typography variant='h6' color='#3d3d3e'>
+					{abilityName}
+				</Typography>
 			</Box>
 			<ControllerStyles
-				variant='contained'
+				variant='outlined'
 				disabled={remaining === 0}
 				onClick={() => handleChangeProfile(abilityName, 'increase')}
 			>
-				+
+				<Typography variant='h6'>+</Typography>
 			</ControllerStyles>
-			<Typography>{abilityValue}</Typography>
+			<Typography variant='h6' color='#3d3d3e'>
+				{abilityValue}
+			</Typography>
 			<ControllerStyles
-				variant='contained'
+				variant='outlined'
 				disabled={abilityValue === 0}
 				onClick={() => handleChangeProfile(abilityName, 'decrease')}
 			>
-				-
+				<Typography variant='h6'>-</Typography>
 			</ControllerStyles>
 		</ControllerContainerStyles>
 	);

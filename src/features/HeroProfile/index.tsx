@@ -1,11 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useHeroProfile } from './hook';
-import { Box, Typography } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
+import { Typography } from '@mui/material';
 import AbilityControllerList from '@/components/AbilityController';
 import { useUpdateHeroProfile } from '@/hooks';
 import { Profile } from '@/apis/type';
-import { ContainerStyles } from './style';
+import { ContainerStyles, RightContainerStyles, SaveButtonStyles } from './style';
 
 const HeroProfile = () => {
 	const { id } = useParams();
@@ -32,17 +31,19 @@ const HeroProfile = () => {
 				handleChangeProfile={handleChangeProfile}
 				remaining={remaining}
 			/>
-			<Box sx={{ alignSelf: 'flex-end' }}>
-				<Typography>剩餘點數 {remaining}</Typography>
-				<LoadingButton
+			<RightContainerStyles>
+				<Typography textAlign='right' variant='subtitle1' color='#3d3d3e'>
+					剩餘點數：{remaining}
+				</Typography>
+				<SaveButtonStyles
 					variant='contained'
 					disabled={remaining > 0}
 					onClick={saveProfile}
 					loading={updateHeroProfile.isPending}
 				>
 					儲存
-				</LoadingButton>
-			</Box>
+				</SaveButtonStyles>
+			</RightContainerStyles>
 		</ContainerStyles>
 	);
 };

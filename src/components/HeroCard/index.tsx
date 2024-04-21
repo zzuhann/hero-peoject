@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material';
 import { ContainerStyles, ImageStyles } from './style';
-import { memo } from 'react';
 import { useStableNavigate } from '@/context';
 
 type Props = {
@@ -10,7 +9,7 @@ type Props = {
 	isActive: boolean;
 };
 
-const HeroCard = memo(({ id, name, imageUrl, isActive }: Props) => {
+const HeroCard = ({ id, name, imageUrl, isActive }: Props) => {
 	const navigate = useStableNavigate();
 
 	const handleClickCard = () => {
@@ -20,9 +19,11 @@ const HeroCard = memo(({ id, name, imageUrl, isActive }: Props) => {
 	return (
 		<ContainerStyles onClick={handleClickCard} isActive={isActive}>
 			<ImageStyles src={imageUrl} />
-			<Typography>{name}</Typography>
+			<Typography variant='h6' fontWeight='bold'>
+				{name}
+			</Typography>
 		</ContainerStyles>
 	);
-});
+};
 
 export default HeroCard;
