@@ -1,4 +1,5 @@
-import { Navigate, createBrowserRouter, Outlet } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
+import HeroPages from '../pages/heroes';
 
 const routes = [
 	{
@@ -7,11 +8,11 @@ const routes = [
 	},
 	{
 		path: '/heroes',
-		element: <Outlet />,
+		element: <HeroPages />,
 		children: [
 			{
 				path: '',
-				element: <div>heroes</div>,
+				element: <></>,
 			},
 			{
 				path: ':id',
