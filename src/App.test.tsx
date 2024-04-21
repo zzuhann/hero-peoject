@@ -5,5 +5,5 @@ import { expect, test } from 'vitest';
 test('go to / route, it should navigate to /heroes route', () => {
 	render(<App />);
 
-	expect(screen.getByText(/heroes/i)).toBeInTheDocument();
+	expect(screen.getByText(/123/i)).toBeInTheDocument();
 });

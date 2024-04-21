@@ -1,13 +1,7 @@
-import { Outlet } from 'react-router-dom';
-import HeroList from '@/features/HeroList';
+import HeroesLayout from '@/layout';
 
 const HeroPages = () => {
-	return (
-		<>
-			<HeroList />
-			<Outlet />
-		</>
-	);
+	return <HeroesLayout />;
 };
 
 export default HeroPages;

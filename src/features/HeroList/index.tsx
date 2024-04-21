@@ -1,16 +1,22 @@
 import HeroCard from '@/components/HeroCard';
-import { useHeroes } from './hook';
 import { Box } from '@mui/material';
+import { useMemo } from 'react';
+import { Hero } from '@/apis/type';
 
-const HeroList = () => {
-	const { heroes, isLoading, isError } = useHeroes();
+type Props = {
+	heroes: Hero[];
+	isLoading: boolean;
+	isError: boolean;
+};
 
-	if (isLoading) return <div>Loading...</div>;
-	if (isError) return <div>Error...</div>;
+const HeroList = ({ heroes }: Props) => {
+	const heroesMemo = useMemo(() => heroes, [heroes]);
 
 	return (
 		<Box sx={{ display: 'flex', gap: '20px' }}>
-			{heroes?.map((hero) => <HeroCard key={hero.id} name={hero.name} imageUrl={hero.image} />)}
+			{heroesMemo?.map((hero) => (
+				<HeroCard key={hero.id} id={hero.id} name={hero.name} imageUrl={hero.image} />
+			))}
 		</Box>
 	);
 };
