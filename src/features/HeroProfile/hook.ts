@@ -10,6 +10,7 @@ export const useHeroProfile = (heroId: string) => {
 
 	const total = (data?.str || 0) + (data?.int || 0) + (data?.agi || 0) + (data?.luk || 0);
 	const currentProfileValueSum = heroProfile.reduce((acc, cur) => acc + cur.value, 0);
+	const remaining = total - currentProfileValueSum;
 
 	const handleChangeProfile = (key: keyof Profile, action: 'increase' | 'decrease') => {
 		if (!heroProfile) return;
@@ -59,5 +60,6 @@ export const useHeroProfile = (heroId: string) => {
 		heroProfile,
 		total,
 		handleChangeProfile,
+		remaining,
 	};
 };
