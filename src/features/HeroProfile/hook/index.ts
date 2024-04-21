@@ -1,8 +1,8 @@
 import { Profile } from '@/apis/type';
 import { useGetHeroById } from '@/hooks';
 import { useEffect, useState } from 'react';
-import { HeroProfile } from './type';
-import { decreaseValue, increaseValue } from './utils';
+import { HeroProfile } from '../type';
+import { decreaseValue, increaseValue } from '../utils';
 
 export const useHeroProfile = (heroId: string) => {
 	const { data } = useGetHeroById(heroId);
