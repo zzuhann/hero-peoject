@@ -1,13 +1,18 @@
 import apis from '@/apis';
 import { Profile } from '@/apis/type';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-hot-toast';
 
 export const useGetHeroes = () => {
 	return useQuery({
 		queryKey: ['heroes'],
 		queryFn: async () => {
 			const data = await apis.getHeroes();
-			return data;
+			if (data) {
+				return data;
+			} else {
+				toast.error('找不到英雄');
+			}
 		},
 	});
 };
@@ -19,7 +24,11 @@ export const useGetHeroById = (id: string) => {
 		enabled: !!id,
 		queryFn: async () => {
 			const data = await apis.getHeroById(id);
-			return data;
+			if (data) {
+				return data;
+			} else {
+				toast.error('找不到英雄');
+			}
 		},
 	});
 };
@@ -32,6 +41,10 @@ export const useUpdateHeroProfile = () => {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['hero'] });
+			toast.success('儲存成功');
+		},
+		onError: () => {
+			toast.error('儲存失敗');
 		},
 	});
 };

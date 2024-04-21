@@ -1,11 +1,8 @@
 import HeroList from '@/features/HeroList';
-import { useGetHeroes } from '@/hooks';
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
 
 const HeroesLayout = () => {
-	const { data, isLoading, isError } = useGetHeroes();
-
 	return (
 		<Box
 			sx={{
@@ -14,7 +11,7 @@ const HeroesLayout = () => {
 				margin: '0 auto',
 			}}
 		>
-			<HeroList heroes={data || []} isLoading={isLoading} isError={isError} />
+			<HeroList />
 			<Outlet />
 		</Box>
 	);

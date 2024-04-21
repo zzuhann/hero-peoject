@@ -5,7 +5,7 @@ import { HeroProfile } from '../type';
 import { decreaseValue, increaseValue } from '../utils';
 
 export const useHeroProfile = (heroId: string) => {
-	const { data } = useGetHeroById(heroId);
+	const { data, isLoading } = useGetHeroById(heroId);
 	const [heroProfile, setHeroProfile] = useState<HeroProfile[]>([]);
 
 	const total = (data?.str || 0) + (data?.int || 0) + (data?.agi || 0) + (data?.luk || 0);
@@ -41,6 +41,7 @@ export const useHeroProfile = (heroId: string) => {
 	}, [data]);
 
 	return {
+		isLoading,
 		heroProfile,
 		total,
 		handleChangeProfile,
