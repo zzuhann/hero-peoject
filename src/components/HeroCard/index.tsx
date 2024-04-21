@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material';
 import { ContainerStyles, ImageStyles } from './style';
 import { useStableNavigate } from '@/context';
+import { useParams } from 'react-router-dom';
 
 type Props = {
 	id: string;
@@ -11,9 +12,14 @@ type Props = {
 
 const HeroCard = ({ id, name, imageUrl, isActive }: Props) => {
 	const navigate = useStableNavigate();
+	const { id: currentId } = useParams();
 
 	const handleClickCard = () => {
-		navigate(`/heroes/${id}`);
+		if (currentId === id) {
+			navigate('heroes');
+		} else {
+			navigate(`/heroes/${id}`);
+		}
 	};
 
 	return (

@@ -6,6 +6,7 @@ import { toast } from 'react-hot-toast';
 export const useGetHeroes = () => {
 	return useQuery({
 		queryKey: ['heroes'],
+		staleTime: 1000 * 60 * 5,
 		queryFn: async () => {
 			const data = await apis.getHeroes();
 			if (data) {

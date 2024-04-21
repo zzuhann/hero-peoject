@@ -7,7 +7,6 @@ const AppRoutes = () => {
 		<Routes>
 			<Route path='/' element={<Navigate to='/heroes' />} />
 			<Route path='/heroes' element={<HeroesLayout />}>
-				<Route path='' element={<div>123</div>} />
 				<Route path=':id' element={<HeroProfile />} />
 			</Route>
 		</Routes>

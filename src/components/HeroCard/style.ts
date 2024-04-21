@@ -19,6 +19,7 @@ export const ContainerStyles = styled(Box, {
 	opacity: isActive ? 1 : 0.4,
 	transform: isActive ? 'translateY(-10px) scale(1.05)' : 'translateY(0) scale(1)',
 	boxShadow: isActive ? '0 0 10px 0 rgba(0, 0, 0, 0.2)' : 'none',
+	transition: 'all 0.5s',
 
 	'@media(max-width: 1100px)': {
 		flexBasis: 'calc(50% - 20px)',
@@ -30,7 +31,6 @@ export const ContainerStyles = styled(Box, {
 
 	'&:hover': {
 		transform: 'translateY(-10px) scale(1.05)',
-		transition: 'all 0.5s',
 		opacity: 1,
 		boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.2)',
 	},

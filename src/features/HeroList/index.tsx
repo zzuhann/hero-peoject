@@ -13,7 +13,13 @@ const HeroList = () => {
 			{isLoading && <SkeletonBox count={4} width={250} height={300} variant='rectangular' />}
 			{!isLoading &&
 				heroes?.map(({ id, name, image }) => (
-					<HeroCard key={id} id={id} name={name} imageUrl={image} isActive={currentId === id} />
+					<HeroCard
+						key={id}
+						id={id}
+						name={name}
+						imageUrl={image}
+						isActive={currentId ? currentId === id : true}
+					/>
 				))}
 		</ContainerStyles>
 	);
