@@ -1,12 +1,24 @@
-import HeroCard from '@/components/HeroCard';
-import { useParams } from 'react-router-dom';
 import { ContainerStyles } from './style';
 import { useGetHeroes } from '@/hooks';
 import SkeletonBox from '@/components/Skeleton';
+import { useParams } from 'react-router-dom';
+import { useStableNavigate } from '@/context';
+import HeroCard from './components/HeroCard';
 
 const HeroList = () => {
 	const { data: heroes, isLoading } = useGetHeroes();
 	const { id: currentId } = useParams();
+	const navigate = useStableNavigate();
+
+	const isActive = (id: string) => (currentId ? currentId === id : true);
+
+	const handleClickCard = (id: string) => {
+		if (currentId === id) {
+			navigate('heroes');
+		} else {
+			navigate(`/heroes/${id}`);
+		}
+	};
 
 	return (
 		<ContainerStyles>
@@ -18,7 +30,8 @@ const HeroList = () => {
 						id={id}
 						name={name}
 						imageUrl={image}
-						isActive={currentId ? currentId === id : true}
+						isActive={isActive(id)}
+						onClick={() => handleClickCard(id)}
 					/>
 				))}
 		</ContainerStyles>

@@ -1,12 +1,13 @@
 import { Profile } from '@/apis/type';
-import { useGetHeroById } from '@/hooks';
+import { useGetHeroById, useUpdateHeroProfile } from '@/hooks';
 import { useEffect, useState } from 'react';
 import { HeroProfile } from '../type';
 import { decreaseValue, increaseValue } from '../utils';
 
 export const useHeroProfile = (heroId: string) => {
-	const { data, isLoading } = useGetHeroById(heroId);
+	const { data, isLoading: isHeroProfileLoading } = useGetHeroById(heroId);
 	const [heroProfile, setHeroProfile] = useState<HeroProfile[]>([]);
+	const updateHeroProfile = useUpdateHeroProfile();
 
 	const total = (data?.str || 0) + (data?.int || 0) + (data?.agi || 0) + (data?.luk || 0);
 	const currentProfileValueSum = heroProfile.reduce((acc, cur) => acc + cur.value, 0);
@@ -30,6 +31,20 @@ export const useHeroProfile = (heroId: string) => {
 		}
 	};
 
+	const saveProfile = () => {
+		const profile = heroProfile.reduce(
+			(acc, cur) => {
+				acc[cur.name] = cur.value;
+				return acc;
+			},
+			{} as Record<keyof Profile, number>,
+		);
+		updateHeroProfile.mutateAsync({
+			id: heroId,
+			profile,
+		});
+	};
+
 	useEffect(() => {
 		if (data) {
 			const profile = Object.keys(data).map((key) => ({
@@ -41,10 +56,12 @@ export const useHeroProfile = (heroId: string) => {
 	}, [data]);
 
 	return {
-		isLoading,
 		heroProfile,
+		isHeroProfileLoading,
 		total,
-		handleChangeProfile,
 		remaining,
+		handleChangeProfile,
+		saveProfile,
+		isUpdateHeroProfileLoading: updateHeroProfile.isPending,
 	};
 };

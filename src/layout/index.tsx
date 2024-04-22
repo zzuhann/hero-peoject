@@ -1,6 +1,6 @@
-import HeroList from '@/features/HeroList';
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
+import HeroList from '@/features/heroes/components/HeroList';
 
 const HeroesLayout = () => {
 	return (

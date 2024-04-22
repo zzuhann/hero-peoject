@@ -2,7 +2,6 @@ import { Box, styled } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
 export const ContainerStyles = styled(Box)({
-	// border: 'solid 1px #bcbcbc',
 	borderRadius: '10px',
 	padding: '20px',
 	width: '100%',
