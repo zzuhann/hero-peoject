@@ -6,13 +6,14 @@ import {
 	ContainerStyles,
 	CounterStyles,
 } from './style';
+import { useContext } from 'react';
+import { HeroesContext } from '@/context/heroesContext';
 
 type Props = {
 	abilityName: keyof Profile;
 	abilityValue: number;
 	isAbleToIncrease: boolean;
 	isAbleToDecrease: boolean;
-	handleChangeProfile: (key: keyof Profile, action: 'increase' | 'decrease') => void;
 };
 
 const AbilityCounter = ({
@@ -20,8 +21,8 @@ const AbilityCounter = ({
 	abilityValue,
 	isAbleToIncrease,
 	isAbleToDecrease,
-	handleChangeProfile,
 }: Props) => {
+	const { handleChangeProfile } = useContext(HeroesContext);
 	return (
 		<ContainerStyles>
 			<AbilityNameContainerStyles>

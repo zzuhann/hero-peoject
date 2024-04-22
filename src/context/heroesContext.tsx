@@ -1,11 +1,23 @@
 import { Profile } from '@/apis/type';
+import { HeroProfile } from '@/features/heroes/components/HeroProfile/type';
 import { useGetHeroById, useUpdateHeroProfile } from '@/hooks';
-import { useEffect, useState } from 'react';
-import { HeroProfile } from '../type';
-import { decreaseValue, increaseValue } from '../../../../../utils';
+import { decreaseValue, increaseValue } from '@/utils';
+import { ReactNode, createContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-export const useHeroProfile = (heroId: string) => {
-	const { data, isLoading: isHeroProfileLoading } = useGetHeroById(heroId);
+export const HeroesContext = createContext({
+	heroProfile: [] as HeroProfile[],
+	isHeroProfileLoading: false,
+	total: 0,
+	remaining: 0,
+	handleChangeProfile: (_key: keyof Profile, _action: 'increase' | 'decrease') => {},
+	saveProfile: () => {},
+	isUpdateHeroProfileLoading: false,
+});
+
+export const useHeroes = () => {
+	const { id: heroId } = useParams();
+	const { data, isLoading: isHeroProfileLoading } = useGetHeroById(heroId || '');
 	const [heroProfile, setHeroProfile] = useState<HeroProfile[]>([]);
 	const updateHeroProfile = useUpdateHeroProfile();
 
@@ -40,7 +52,7 @@ export const useHeroProfile = (heroId: string) => {
 			{} as Record<keyof Profile, number>,
 		);
 		updateHeroProfile.mutateAsync({
-			id: heroId,
+			id: heroId || '',
 			profile,
 		});
 	};
@@ -58,9 +70,15 @@ export const useHeroProfile = (heroId: string) => {
 	return {
 		heroProfile,
 		isHeroProfileLoading,
+		total,
 		remaining,
 		handleChangeProfile,
 		saveProfile,
 		isUpdateHeroProfileLoading: updateHeroProfile.isPending,
 	};
+};
+
+export const HeroesProvider = ({ children }: { children: ReactNode }) => {
+	const value = useHeroes();
+	return <HeroesContext.Provider value={value}>{children}</HeroesContext.Provider>;
 };

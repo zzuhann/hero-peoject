@@ -1,5 +1,5 @@
 import { decreaseValue, increaseValue } from '.';
-import { HeroProfile } from '../type';
+import { HeroProfile } from '../features/heroes/components/HeroProfile/type';
 
 test('increase 1 on correct name', () => {
 	const prevProfile: HeroProfile[] = [
