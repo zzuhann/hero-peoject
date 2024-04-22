@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import HeroProfile from '@/features/HeroProfile';
 import HeroesLayout from '@/layout';
+import HeroProfile from '@/features/heroes/components/HeroProfile';
 
 const AppRoutes = () => {
 	return (

@@ -10,14 +10,14 @@ export const useHeroProfile = (heroId: string) => {
 	const updateHeroProfile = useUpdateHeroProfile();
 
 	const total = (data?.str || 0) + (data?.int || 0) + (data?.agi || 0) + (data?.luk || 0);
-	const currentProfileValueSum = heroProfile.reduce((acc, cur) => acc + cur.value, 0);
-	const remaining = total - currentProfileValueSum;
+	const currentValueSum = heroProfile.reduce((acc, cur) => acc + cur.value, 0);
+	const remaining = total - currentValueSum;
 
 	const handleChangeProfile = (key: keyof Profile, action: 'increase' | 'decrease') => {
-		if (!heroProfile) return;
 		if (action === 'increase') {
 			setHeroProfile((prev) => {
 				if (!prev) return [];
+				const currentProfileValueSum = prev.reduce((acc, cur) => acc + cur.value, 0);
 				if (currentProfileValueSum === total) return prev;
 				return increaseValue(prev, key);
 			});
@@ -58,7 +58,6 @@ export const useHeroProfile = (heroId: string) => {
 	return {
 		heroProfile,
 		isHeroProfileLoading,
-		total,
 		remaining,
 		handleChangeProfile,
 		saveProfile,
