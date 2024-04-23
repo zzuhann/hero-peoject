@@ -30,14 +30,16 @@ export const useHeroes = () => {
 			setHeroProfile((prev) => {
 				if (!prev) return [];
 				const currentProfileValueSum = prev.reduce((acc, cur) => acc + cur.value, 0);
-				if (currentProfileValueSum === total) return prev;
+				const isNoRemaining = currentProfileValueSum === total;
+				if (isNoRemaining) return prev;
 				return increaseValue(prev, key);
 			});
 		}
 		if (action === 'decrease') {
 			setHeroProfile((prev) => {
 				if (!prev) return [];
-				if (prev.find((item) => item.name === key)?.value === 0) return prev;
+				const isZero = prev.find((item) => item.name === key)?.value === 0;
+				if (isZero) return prev;
 				return decreaseValue(prev, key);
 			});
 		}
