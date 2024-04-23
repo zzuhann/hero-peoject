@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import HeroesLayout from '@/layout';
 import HeroProfile from '@/features/heroes/components/HeroProfile';
+import NotFoundPage from '@/pages/notFound';
 
 const AppRoutes = () => {
 	return (
@@ -9,6 +10,7 @@ const AppRoutes = () => {
 			<Route path='/heroes' element={<HeroesLayout />}>
 				<Route path=':id' element={<HeroProfile />} />
 			</Route>
+			<Route path='*' element={<NotFoundPage />} />
 		</Routes>
 	);
 };
