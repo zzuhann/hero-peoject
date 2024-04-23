@@ -1,19 +1,13 @@
 import { Outlet } from 'react-router-dom';
-import { Box } from '@mui/material';
 import HeroList from '@/features/heroes/components/HeroList';
+import { ContainerStyles } from './style';
 
 const HeroesLayout = () => {
 	return (
-		<Box
-			sx={{
-				padding: '40px 20px',
-				maxWidth: '1200px',
-				margin: '0 auto',
-			}}
-		>
+		<ContainerStyles>
 			<HeroList />
 			<Outlet />
-		</Box>
+		</ContainerStyles>
 	);
 };
 
