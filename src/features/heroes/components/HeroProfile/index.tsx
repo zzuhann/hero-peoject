@@ -15,7 +15,7 @@ const HeroProfile = () => {
 				<>
 					<AbilityCounterList />
 					<RightContainerStyles>
-						<Typography textAlign='right' variant='subtitle1' color='#3d3d3e'>
+						<Typography variant='subtitle1' color='#3d3d3e'>
 							剩餘點數：{remaining}
 						</Typography>
 						<SaveButtonStyles
